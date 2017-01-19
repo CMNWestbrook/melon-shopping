@@ -88,12 +88,27 @@ def add_to_cart(melon_id):
     When a melon is added to the cart, redirect browser to the shopping cart
     page and display a confirmation message: 'Melon successfully added to
     cart'."""
+    # session[melon_id] = melon_id[price]
 
-    # session["cart"] = {}
+    session["cart"] = {}
 
-    cart = {}
+    melon = melons.get_by_id(melon_id)
 
-    cart[melon_id] += 1
+    name = melon.common_name
+    price = melon.price
+
+    if melon_id in cart:
+        cart["melon_id"] += 1
+
+    else:
+        cart["melon_id"] = 1
+
+    # quantity = cart.get(melon_id, 0) + 1
+    # cart[melon_id] = [name, quantity, price, (quantity*price)]
+
+    return cart
+
+
 
     # TODO: Finish shopping cart functionality
 
